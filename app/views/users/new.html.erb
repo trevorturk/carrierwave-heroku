@@ -1,0 +1,26 @@
+<h1>New user</h1>
+
+<%= form_for @user, :html => {:multipart => true} do |f| %>
+
+    <p><%= @user.errors.full_messages.to_s %></p>
+
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </p>
+
+    <p>
+      <%= f.label :avatar %><br />
+      <%= f.file_field :avatar %>
+    </p>
+
+    <% if @user.avatar? %>
+      <%= image_tag(@user.avatar_url) %><br />
+      <%= f.hidden_field :avatar_cache %>
+    <% end %>
+
+    <p><%= f.submit %></p>
+
+<% end %>
+
+<p><%= link_to 'Back', users_path %></p>
